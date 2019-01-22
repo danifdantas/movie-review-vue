@@ -1,4 +1,7 @@
-<?php require_once('admin/scripts/read.php'); 
+<?php 
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+require_once('admin/scripts/read.php'); 
 if(isset($_GET['filter'])){
   $tbl = 'tbl_movies';
   $tbl_2 = 'tbl_genre';
