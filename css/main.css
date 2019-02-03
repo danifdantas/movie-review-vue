@@ -5,6 +5,15 @@
   text-decoration: none;
 }
 
+body {
+  background: #f5f4f4;
+  color: #505050;
+  height: 100%;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  line-height: 1.5;
+}
+
 #movies {
   display: flex;
   flex-wrap: wrap;
@@ -94,4 +103,38 @@ h1 {
   color: white;
   text-transform: uppercase;
   margin-bottom: 20px !important;
+}
+
+#admin-dash {
+  padding: 4rem;
+}
+
+#container {
+  margin-top: 50px;
+  width: 50%;
+  margin: auto;
+  background-color: #e0dfdf;
+  border-radius: 20px;
+}
+
+.login-title {
+  background-color: aquamarine;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+input,
+label {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+input {
+  line-height: 30px;
+  font-size: 14px;
 }

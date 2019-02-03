@@ -1,7 +1,7 @@
 <?php 
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
-require_once('admin/scripts/read.php'); 
+require_once('admin/scripts/config.php');
 if(isset($_GET['filter'])){
   $tbl = 'tbl_movies';
   $tbl_2 = 'tbl_genre';
@@ -26,7 +26,7 @@ if(isset($_GET['filter'])){
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="css/main.css">
   <title>Movie Review</title>
 </head>
 <body>

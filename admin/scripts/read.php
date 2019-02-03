@@ -36,6 +36,7 @@ function filterResults($tbl, $tbl_2, $tbl_3, $col, $col_2, $col_3, $filter){
   $filterQuery.= 'WHERE a.' .$col. ' = c.' .$col;
   $filterQuery.= ' AND b.' .$col_2. ' = c.'.$col_2;
   $filterQuery.= ' AND b.' .$col_3.'= "'.$filter.'"';
+  // $filterQuery = "SELECT * FROM :tbl  as a, :tbl_2 as b, :tbl_3 as c, WHERE a :col = c :col AND b :col_2 = c :col_2 AND b :col_3 = :filter";
 // var_dump($filterQuery);
   // SELECT * FROM tbl_movies as a, tbl_genre as b, tbl_mov_genre as c WHERE a.movies_id = c.movies_id AND b.genre_id = c.genre_id AND b.genre_name="action"
   $runQuery = $pdo->query($filterQuery);
