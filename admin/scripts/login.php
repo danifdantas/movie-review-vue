@@ -23,10 +23,12 @@ function login($username, $password)
       ':username'=> $username,
     )
   );
-
-  //PASSWORD INCORRECT 
-  if($check_user_psw !== $password)
-  {
+  $user_pass = $user_psw->fetchColumn();
+  
+  //INCORRECT PASSWORD
+  if($user_pass !== $password)
+  { 
+    echo "<p>The username or password is incorrect!</p>";
     //INCREMENT USER FAILED LOGIN
     $set_failed_login = "UPDATE tbl_user SET user_failed_login = user_failed_login +1 WHERE user_name = :username";
     $set_failed_login = $pdo->prepare($set_failed_login);
@@ -44,7 +46,7 @@ function login($username, $password)
               ":username" => $username
             )
           );
-   
+         
   }    
   // CHECK FAILED ATTEMPTS
   $get_user_active_query = "SELECT user_failed_login FROM tbl_user WHERE user_name = :username";
@@ -59,24 +61,39 @@ function login($username, $password)
     {
       if($check_user_active["user_failed_login"] >= 3) 
          {
-          //BLOCK USER FOR 15min -  
-          $block_user_query = "SELECT user_failed_login, (CASE when `user_failed_login_time` is not NULL and DATE_ADD(user_failed_login_time, INTERVAL 15 MINUTE)>NOW() then 1 else 0 end) as denied FROM tbl_user WHERE user_name = :username
-          ";
+          //BLOCK USER FOR 10min -  
+          $block_user_query = "SELECT user_failed_login, (CASE when `user_failed_login_time` is not NULL and DATE_ADD(user_failed_login_time, INTERVAL 9 MINUTE)>NOW() then 1 else 0 end) as denied FROM tbl_user WHERE user_name = :username";
           $block_user = $pdo->prepare($block_user_query);
           $block_user->execute(
                 array(
                 ":username" => $username
               )
             );
+            
+          // BLOCK USER WITH USER_ACTIVE VALUE I was using the user_active value before I found the query above. I left the code here so I can refer to it later
+          // $set_user_active = "UPDATE tbl_user SET user_active = 1 WHERE user_name = :username";
+          //   $set_user_active = $pdo->prepare($set_user_active);
+          //   $set_user_active->execute(
+          //       array(
+          //       ":username" => $username
+          //     )
+          //   );
+          //   redirect_to('blocked.php');
+          // }  
+
           $block = $block_user->fetch(PDO::FETCH_ASSOC);
+          // var_dump($block, $password);die;
             if($block["denied"] == 1)
             {
               redirect_to('blocked.php');
             }  
           }
      }
+     
   if($user_set->fetchColumn() > 0)
   {
+        // WAS USING THIS BEFORE TO LOCK USER EVEN WITH CORRECT PASSWORD
+        // $get_user_query = "SELECT * FROM tbl_user WHERE user_pass = :psw AND user_name = :username AND user_active = 0";
         $get_user_query = "SELECT * FROM tbl_user WHERE user_pass = :psw AND user_name = :username";
         $get_user_set = $pdo->prepare($get_user_query);
         $get_user_set->execute(

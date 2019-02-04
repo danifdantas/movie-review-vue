@@ -1,8 +1,8 @@
 <?php 
-
 require_once('scripts/config.php');
 confirm_logged_in();
 greeting();
+$message = greeting();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ greeting();
 <body id="admin-dash">
   <h1>Admin Dashboard</h1>
   <h2>Welcome <?php echo $_SESSION['user_name'];?></h2>
-  <h3><?php if(isset($message)){echo $message;}  ?></h3>
+  <h3><?php echo $message;  ?></h3>
   <p>Your Last Login Was: <?php echo $_SESSION['user_login_time'];?></p>
   <p>This is the admin dashboard page</p>
   <nav>

@@ -1,7 +1,5 @@
 <?php 
-
 require_once('scripts/config.php');
-
 
 ?>
 <!DOCTYPE html>
@@ -15,8 +13,9 @@ require_once('scripts/config.php');
   <title>Document</title>
 </head>
 <body>
-  <h1>User is Blocked for 15min</h1>
- <a href="admin_login.php">Try Login Again</a>
+  <h1>You are Blocked</h1>
+  <h1>try again in 10min</h1>
+ <!-- <a href="admin_login.php">Try Login Again</a> -->
 
 
 </body>

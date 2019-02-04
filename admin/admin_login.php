@@ -8,7 +8,6 @@ if(empty($_POST['username']) || empty($_POST['password'])){
   $password = htmlspecialchars($_POST['password']);
   
   $message = login($username,$password);
- 
 }
 
 ?>
