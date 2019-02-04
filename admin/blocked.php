@@ -15,8 +15,9 @@ require_once('scripts/config.php');
   <title>Document</title>
 </head>
 <body>
-  <h1>User is Blocked</h1>
- 
+  <h1>User is Blocked for 15min</h1>
+ <a href="admin_login.php">Try Login Again</a>
+
 
 </body>
 </html>
