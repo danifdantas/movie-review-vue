@@ -3,6 +3,9 @@ require_once('scripts/config.php');
 confirm_logged_in();
 greeting();
 $message = greeting();
+$date= date_create($_SESSION['user_login_time']);
+$readable_date = ( date_format($date, ' l jS F Y \a\t g:ia')); 
+            
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,9 @@ $message = greeting();
   <h1>Admin Dashboard</h1>
   <h2>Welcome <?php echo $_SESSION['user_name'];?></h2>
   <h3><?php echo $message;  ?></h3>
-  <p>Your Last Login Was: <?php echo $_SESSION['user_login_time'];?></p>
+  <?php 
+      ?>
+  <p>Your Last Login Was on <?php echo $readable_date;?></p>
   <p>This is the admin dashboard page</p>
   <nav>
     <ul>

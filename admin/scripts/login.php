@@ -28,7 +28,7 @@ function login($username, $password)
   //INCORRECT PASSWORD
   if($user_pass !== $password)
   { 
-    echo "<p>The username or password is incorrect!</p>";
+    $message = "The username or password is incorrect!";
     //INCREMENT USER FAILED LOGIN
     $set_failed_login = "UPDATE tbl_user SET user_failed_login = user_failed_login +1 WHERE user_name = :username";
     $set_failed_login = $pdo->prepare($set_failed_login);
@@ -46,7 +46,8 @@ function login($username, $password)
               ":username" => $username
             )
           );
-         
+
+     
   }    
   // CHECK FAILED ATTEMPTS
   $get_user_active_query = "SELECT user_failed_login FROM tbl_user WHERE user_name = :username";
@@ -94,6 +95,7 @@ function login($username, $password)
   {
         // WAS USING THIS BEFORE TO LOCK USER EVEN WITH CORRECT PASSWORD
         // $get_user_query = "SELECT * FROM tbl_user WHERE user_pass = :psw AND user_name = :username AND user_active = 0";
+        // CHECK USER CREDENCIALS
         $get_user_query = "SELECT * FROM tbl_user WHERE user_pass = :psw AND user_name = :username";
         $get_user_set = $pdo->prepare($get_user_query);
         $get_user_set->execute(
@@ -137,6 +139,7 @@ function login($username, $password)
                   );
               redirect_to('index.php');
           }
+          return $message;        
   }
   else
   {
