@@ -1,0 +1,20 @@
+$red: red;
+$bg-color: #e0dfdf;
+$aqua: aquamarine;
+$dark-green: #1c7f93;
+$dark-grey: #505050;
+$title-grey: #939393;
+@mixin box-shadow {
+  -webkit-box-shadow: 0px 1px 24px -5px rgba(0, 0, 0, 0.72);
+  -moz-box-shadow: 0px 1px 24px -5px rgba(0, 0, 0, 0.72);
+  box-shadow: 0px 1px 24px -5px rgba(0, 0, 0, 0.72);
+}
+
+$dark-bg: rgb(26, 24, 24);
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
